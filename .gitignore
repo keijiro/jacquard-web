@@ -1,0 +1,4 @@
+.DS_Store
+
+# The working clone publish.sh builds in, Unity's Library cache included.
+/.work

@@ -16,6 +16,22 @@ what a repository contains rather than what a build produces.
 
 Built from [Jacquard] at `510c609`.
 
+Updating it
+-----------
+
+    ./publish.sh            # clone or fetch, build, replace, commit, push
+    ./publish.sh --no-push  # stop after the commit
+
+`publish.sh` clones Jacquard into `.work`, writes a build entry point into that clone,
+builds the Web player with the `unity` CLI, and replaces what this repository serves.
+The clone is kept so that Unity's `Library` survives between runs, which is most of what
+makes a second build quick; it is a gigabyte or two, and it is ignored.
+
+Nothing has to be installed for this beyond the editor Jacquard asks for and the `unity`
+CLI, and nothing has to be closed either — the editor refuses two instances on one
+project directory, and the clone is a different one. `JACQUARD_REF` builds something
+other than `main`.
+
 Sound
 -----
 
