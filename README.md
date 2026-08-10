@@ -4,7 +4,11 @@ Jacquard on the Web
 A Web build of [Jacquard], a prototype grid sequencer, served from the root of this
 repository by GitHub Pages:
 
-**https://keijiro.github.io/jacquard-web/**
+**https://www.keijiro.tokyo/jacquard-web/**
+
+That is the address rather than `keijiro.github.io/jacquard-web/` because the account
+carries a custom domain, and a project site inherits it. The `github.io` one still
+works: it answers with a redirect here.
 
 Nothing here is written by hand. It is the output of a Unity 6.5 (6000.5.6f1) Web
 build, and the only reason it is a repository of its own is that GitHub Pages serves
