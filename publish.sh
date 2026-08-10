@@ -123,8 +123,23 @@ fi
   { echo "The build reported success but produced no page. Log: $log" >&2; exit 70; }
 
 say "Replacing the published build"
-rm -rf "$here/Build" "$here/TemplateData" "$here/index.html"
+
+# Everything in the root that is not one of these is build output, and is replaced
+# wholesale rather than deleted by name: a build that renames or drops a file has to be
+# able to take the old one with it. Anything of your own that belongs here belongs in
+# this list too.
+find "$here" -mindepth 1 -maxdepth 1 \
+  ! -name .git ! -name .gitignore ! -name .nojekyll \
+  ! -name README.md ! -name publish.sh ! -name "$(basename "$work")" \
+  -exec rm -rf {} +
+
 cp -R "$src/Web/." "$here/"
+
+# Unity says which of what it just produced is not for shipping, in the one place it can
+# be sure will survive being copied around: the folder's name.
+find "$here" -mindepth 1 -maxdepth 1 \
+  \( -name "*_DoNotShip" -o -name "*_BackUpThisFolder_ButDontShipItWithYourGame" \) \
+  -exec rm -rf {} +
 
 # The README names the commit it was built from, so it has to be told about this one or
 # it starts lying immediately.
